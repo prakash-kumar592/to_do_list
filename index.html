@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow Pro - Modern Todo App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="todo-app">
+            <header class="app-header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <h1><i class="fas fa-check-circle pulse"></i> TaskFlow Pro</h1>
+                        <p class="subtitle" id="motivationalQuote">Stay organized, stay productive</p>
+                    </div>
+                    <div class="header-right">
+                        <button id="darkModeToggle" class="theme-toggle" title="Toggle Dark Mode">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="progress-section">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">0% Complete</span>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search tasks...">
+                </div>
+                
+                <div class="input-container">
+                    <input type="text" id="todoInput" placeholder="Add your first task...">
+                    <div class="input-extras">
+                        <select id="prioritySelect" class="priority-select">
+                            <option value="low">🟢 Low</option>
+                            <option value="medium">🟡 Medium</option>
+                            <option value="high">🔴 High</option>
+                        </select>
+                        <select id="categorySelect" class="category-select">
+                            <option value="personal">Personal</option>
+                            <option value="work">Work</option>
+                            <option value="study">Study</option>
+                            <option value="health">Health</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="datetime-local" id="dueDateInput" class="due-date-input">
+                        <button id="addBtn" class="add-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-clipboard-list"></i> All (<span id="allCount">0</span>)
+                    </button>
+                    <button class="filter-btn" data-filter="pending">
+                        <i class="fas fa-hourglass-half"></i> Pending (<span id="pendingCount">0</span>)
+                    </button>
+                    <button class="filter-btn" data-filter="completed">
+                        <i class="fas fa-check-circle"></i> Completed (<span id="completedCount">0</span>)
+                    </button>
+                    <button class="filter-btn" data-filter="overdue">
+                        <i class="fas fa-exclamation-triangle"></i> Overdue (<span id="overdueCount">0</span>)
+                    </button>
+                </div>
+                
+                <div class="category-filter">
+                    <select id="categoryFilter" class="category-filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="personal">Personal</option>
+                        <option value="work">Work</option>
+                        <option value="study">Study</option>
+                        <option value="health">Health</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="todo-list-container">
+                <ul id="todoList" class="todo-list"></ul>
+                <div id="emptyState" class="empty-state">
+                    <i class="fas fa-clipboard-list bounce"></i>
+                    <h3>No tasks yet</h3>
+                    <p id="emptyStateMessage">You've got this! Start planning now.</p>
+                </div>
+            </div>
+
+            <div class="footer-actions">
+                <div class="action-buttons">
+                    <button id="clearCompleted" class="action-btn clear-btn">
+                        <i class="fas fa-trash"></i>
+                        Clear Completed
+                    </button>
+                    <button id="exportTasks" class="action-btn export-btn">
+                        <i class="fas fa-download"></i>
+                        Export
+                    </button>
+                    <button id="notificationToggle" class="action-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subtask Modal -->
+    <div id="subtaskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Manage Subtasks</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="subtask-input-container">
+                    <input type="text" id="subtaskInput" placeholder="Add a subtask...">
+                    <button id="addSubtaskBtn" class="add-subtask-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <ul id="subtaskList" class="subtask-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
